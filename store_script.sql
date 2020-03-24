@@ -4,28 +4,19 @@ CREATE DATABASE store;
 -- SELECT DATABASE
 USE store;
 
--- CREATE SEQUENCE
-/* Creamos la secuencia para poder insertar datos de valores auto incrementables*/
-
-CREATE SEQUENCE id_increment
-INCREMENT BY 1 
-START WITH 1 
-MAXVALUE 99999 
-MINVALUE 1;
-
 -- CREATE TABLES
    
 CREATE TABLE PRODUCTS(
-    product_id INT PRIMARY KEY,
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(45) NOT NULL,
     category_id INT NOT NULL,
     product_weight VARCHAR(2),
     stock INT NOT NULL,
-    product_price NUMBER(*,2) NOT NULL
+    product_price FLOAT NOT NULL
     );
 
 CREATE TABLE PRODUCTS_CATEGORY(
-    category_id INT PRIMARY KEY,
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(45)
     );
 
@@ -36,7 +27,7 @@ CREATE TABLE CUSTOMER(
     );
 
 CREATE TABLE CUSTOMER_DETAILS(
-    customer_id INT,
+    customer_id INT AUTO_INCREMENT,
     first_name VARCHAR(45) NOT NULL,
     last_name VARCHAR(45) NOT NULL,
     address VARCHAR(45) NOT NULL,
@@ -48,10 +39,10 @@ CREATE TABLE CUSTOMER_DETAILS(
     );
 
 CREATE TABLE SALES(
-    sale_id INT,
+    sale_id INT AUTO_INCREMENT,
     customer_id INT,
     date_sale DATE NOT NULL,
-    total NUMBER(*,2) NOT NULL,
+    total FLOAT NOT NULL,
     
     PRIMARY KEY (sale_id, customer_id)
     );
@@ -60,7 +51,7 @@ CREATE TABLE SALES_DETAILS(
     sale_id INT PRIMARY KEY,
     product_id INT NOT NULL,
     category_id INT NOT NULL,
-    product_price NUMBER(*,2) NOT NULL,
+    product_price FLOAT NOT NULL,
     quantity INT NOT NULL
     ); 
 
@@ -85,3 +76,12 @@ ALTER TABLE sales_details
 ADD CONSTRAINT FK_salesdetails_productid
     FOREIGN KEY (product_id)
     REFERENCES products (product_id);
+    
+-- INSERT
+
+INSERT INTO products_category (type) VALUES ('T-SHIRT');
+INSERT INTO products_category (type) VALUES ('SWEATERS');
+INSERT INTO products_category (type) VALUES ('DENIM');
+INSERT INTO products_category (type) VALUES ('PANTS');
+INSERT INTO products_category (type) VALUES ('JACKET');
+
