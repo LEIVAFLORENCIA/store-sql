@@ -1,2 +1,5 @@
 # store-sql
-Creación de base de datos para una tienda 
+Inventario de stock, clientes y ventas.
+
+Modelo entidad relación:
+https://github.com/LEIVAFLORENCIA/store-sql/blob/master/modelo-entidad-relacion.pdf
